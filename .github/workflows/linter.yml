@@ -4,6 +4,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: install dependencies
+        run: npm ci
       - name: checkout repo
         uses: actions/checkout@v2
       - name: ESLint test
