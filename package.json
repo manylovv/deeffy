@@ -2,7 +2,8 @@
   "dependencies": {
     "@jest/globals": "^28.1.0",
     "co": "^4.6.0",
-    "commander": "^9.2.0"
+    "commander": "^9.2.0",
+    "eslint-config-airbnb": "^19.0.4"
   },
   "name": "@hexlet/code",
   "description": "[![Actions Status](https://github.com/manylovv/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/manylovv/frontend-project-lvl2/actions)",
