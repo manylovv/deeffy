@@ -1,15 +1,23 @@
 {
   "dependencies": {
     "@jest/globals": "^28.1.0",
-    "co": "^4.6.0",
     "commander": "^9.2.0",
-    "eslint-config-airbnb": "^19.0.4"
+    "js-yaml": "^4.1.0",
+    "lodash.isequal": "^4.5.0",
+    "lodash.isplainobject": "^4.0.6",
+    "lodash.isstring": "^4.0.1",
+    "lodash.sortby": "^4.7.0",
+    "lodash.union": "^4.6.0"
   },
   "name": "@hexlet/code",
   "description": "[![Actions Status](https://github.com/manylovv/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/manylovv/frontend-project-lvl2/actions)",
   "version": "1.0.0",
+  "main": "src/bin/gendiff.js",
   "scripts": {
     "test": "jest"
+  },
+  "jest": {
+    "testPathIgnorePatterns": ["./__tests__/tests-utils.js"]
   },
   "repository": {
     "type": "git",
@@ -22,10 +30,14 @@
   },
   "homepage": "https://github.com/manylovv/frontend-project-lvl2#readme",
   "type": "module",
-  "bin": "gendiff.js",
+  "bin": {
+    "gendiff": "src/bin/gendiff.js"
+  },
   "devDependencies": {
     "eslint": "^8.16.0",
     "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "jest": "^28.1.0"
   }
