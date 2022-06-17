@@ -1,4 +1,4 @@
-name: linter
+name: tests
 on: push
 jobs:
   test:
@@ -8,5 +8,5 @@ jobs:
         uses: actions/checkout@v2
       - name: install dependencies
         run: npm ci
-      - name: ESLint test
-        run: make lint
+      - name: run tests
+        run: npm test
