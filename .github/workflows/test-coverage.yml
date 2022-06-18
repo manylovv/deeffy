@@ -2,7 +2,7 @@ name: "test coverage"
 on: push
 
 jobs:
-  check_pr:
+  test-coverage:
     runs-on: ubuntu-latest
     steps:
     - name: checkout code
@@ -15,6 +15,6 @@ jobs:
       run: make test-coverage
 
     - name: publish code coverage to code-climate (duh)
-      uses: paambaati/codeclimate-action@v3.0.0
+      uses: manylovv/codeclimate-action@v3.0.0
       env:
-        CC_TEST_REPORTER_ID: 3470adaf12ff7cecdfe5a968ae0e95d098b6ee58c340114e1e90d440ee9e66ab
+        CC_TEST_REPORTER_ID: 1671c2f2b3366815e5b43491c991faa9d07cfadea7a70a692094eb774ef14ab8
