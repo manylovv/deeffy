@@ -17,7 +17,20 @@
     "test": "jest"
   },
   "jest": {
-    "testPathIgnorePatterns": ["./__tests__/tests-utils.js"]
+    "testPathIgnorePatterns": [
+      "./__tests__/tests-utils.js"
+    ],
+    "coverageReporters": [
+      "clover",
+      "json",
+      "lcov",
+      [
+        "text",
+        {
+          "skipFull": true
+        }
+      ]
+    ]
   },
   "repository": {
     "type": "git",

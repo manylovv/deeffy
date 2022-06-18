@@ -16,8 +16,8 @@ test('trees difference (JSON)', () => {
 
 test('trees difference (YAML)', () => {
   const [file1, file2] = [
-    getFixturePath('yaml', 'hexlet-data-1.yaml'),
-    getFixturePath('json', 'hexlet-data-2.yaml'),
+    getFixturePath('yaml', 'hexlet-data-1.yml'),
+    getFixturePath('yaml', 'hexlet-data-2.yml'),
   ];
 
   expect(generateDifference(file1, file2)).toEqual(YAML.load(EXPECTED));
