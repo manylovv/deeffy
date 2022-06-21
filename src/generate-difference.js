@@ -57,7 +57,6 @@ const generateDifference = (filepath1, filepath2) => {
       return new Error(`UNEXPECTED_KEY: ${key}`);
     });
 
-    // result.sort((a, b) => (a.key > b.key ? 1 : -1));
     return sortBy(result, 'key');
   };
 

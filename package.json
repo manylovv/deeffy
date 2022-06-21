@@ -12,7 +12,7 @@
   },
   "name": "@hexlet/code",
   "description": "[![Actions Status](https://github.com/manylovv/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/manylovv/frontend-project-lvl2/actions)",
-  "version": "1.0.0",
+  "version": "0.9.0",
   "main": "src/index.js",
   "scripts": {
     "test": "jest"

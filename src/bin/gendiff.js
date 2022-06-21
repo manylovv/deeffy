@@ -16,5 +16,4 @@ program
     console.log(diff);
   });
 
-console.log(process.argv);
 program.parse(process.argv);
