@@ -12,20 +12,18 @@ const getPath = (path, currentName) => [...path, currentName].join('.');
 const generateString = (type, path, oldValue, newValue) => {
   const plainOldValue = getPlainValue(oldValue);
   const plainNewValue = getPlainValue(newValue);
-  const result = [`Property '${path}'`];
+
+  const propertyAndPath = `Property '${path}'`;
 
   switch (type) {
     case 'changed':
-      result.push(`was updated. From ${plainOldValue} to ${plainNewValue}`);
-      return result.join(' ');
+      return `${propertyAndPath} was updated. From ${plainOldValue} to ${plainNewValue}`;
 
     case 'added':
-      result.push(`was added with value: ${plainNewValue}`);
-      return result.join(' ');
+      return `${propertyAndPath} was added with value: ${plainNewValue}`;
 
     default:
-      result.push('was removed');
-      return result.join(' ');
+      return `${propertyAndPath} was removed`;
   }
 };
 
