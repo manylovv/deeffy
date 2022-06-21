@@ -1,4 +1,4 @@
-import generateDifference from './main.js';
+import generateDifference from './generate-difference.js';
 import getFormatter from './formatters/index.js';
 
 const gendiff = (filepath1, filepath2, format) => {

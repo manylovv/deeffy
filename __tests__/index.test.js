@@ -1,7 +1,7 @@
 import { test, expect } from '@jest/globals';
 import YAML from 'js-yaml';
 import { getFixturePath, readFile } from './tests-utils.js';
-import { generateDifference } from '../src/index.js';
+import generateDifference from '../src/generate-difference.js';
 
 const EXPECTED = readFile('expected', 'diff(hexlet-data).json');
 

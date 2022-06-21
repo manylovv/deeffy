@@ -13,7 +13,7 @@ const parse = (filepath) => {
     return YAML.load(file);
   }
 
-  return null;
+  return new Error(`UNABLE_TO_PARSE_FILE: '${filepath}'`);
 };
 
 export default parse;
