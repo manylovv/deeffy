@@ -7,7 +7,7 @@ const getPlainValue = (value) => {
   return value;
 };
 
-const getPath = (path, currentName) => [...path, currentName].join('.');
+const getCurrentPath = (path, currentName) => [...path, currentName].join('.');
 
 const generateString = (type, path, oldValue, newValue) => {
   const plainOldValue = getPlainValue(oldValue);
@@ -28,31 +28,26 @@ const generateString = (type, path, oldValue, newValue) => {
 };
 
 const formatTreeToPlain = (tree) => {
-  const result = [];
-  const iter = (iterableTree, path) => {
-    iterableTree.forEach((current) => {
-      const [currentType, currentPath, oldValue, newValue] = [
-        current.type,
-        getPath(path, current.key),
-        current.oldValue,
-        current.newValue,
-      ];
-
+  const iter = (iterableTree, path = []) => iterableTree
+    .reduce((acc, current) => {
       if (current.type === 'tree') {
-        return iter(current.children, [...path, current.key]);
+        return [...acc, iter(current.children, [...path, current.key])];
       }
 
       if (current.type !== 'unchanged') {
-        return result.push(
-          generateString(currentType, currentPath, oldValue, newValue),
-        );
+        return [...acc, generateString(
+          current.type,
+          getCurrentPath(path, current.key),
+          current.oldValue,
+          current.newValue,
+        )];
       }
 
-      return null;
-    });
-  };
-  iter(tree, []);
-  return result.join('\n');
+      return acc;
+    }, [])
+    .join('\n');
+
+  return iter(tree);
 };
 
 export default formatTreeToPlain;
