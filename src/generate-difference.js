@@ -1,11 +1,10 @@
 import isPlainObject from 'lodash.isplainobject';
 import union from 'lodash.union';
 import sortBy from 'lodash.sortby';
+import has from 'lodash.has';
 import parse from './parsers.js';
 
 const getObjectsKeys = (object1, object2) => union(Object.keys(object1), Object.keys(object2));
-
-const has = (obj, key) => Object.hasOwn(obj, key);
 
 const generateDifference = (filepath1, filepath2) => {
   const [file1, file2] = [parse(filepath1), parse(filepath2)];
