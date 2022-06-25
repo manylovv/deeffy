@@ -1,14 +1,15 @@
 import formatTree from './stylish.js';
-import formatTreeToJSON from './json.js';
 import formatTreeToPlain from './plain.js';
 
-export default (option) => {
+export default (data, option) => {
   switch (option) {
+    case 'stylish':
+      return formatTree(data);
     case 'plain':
-      return formatTreeToPlain;
+      return formatTreeToPlain(data);
     case 'json':
-      return formatTreeToJSON;
+      return JSON.stringify(data, null, 2);
     default:
-      return formatTree;
+      throw new Error(`Invalid format option: ${option}`);
   }
 };

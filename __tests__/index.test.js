@@ -1,24 +1,24 @@
 import { test, expect } from '@jest/globals';
-import YAML from 'js-yaml';
-import { getFixturePath, readFile } from './tests-utils.js';
-import generateDifference from '../src/generate-difference.js';
+import { getFixturePath, readFixture } from '../src/utils.js';
+import gendiff from '../src/index.js';
 
-const EXPECTED = readFile('expected', 'diff(hexlet-data).json');
-
-test('trees difference (JSON)', () => {
-  const [file1, file2] = [
-    getFixturePath('json', 'hexlet-data-1.json'),
-    getFixturePath('json', 'hexlet-data-2.json'),
-  ];
-
-  expect(generateDifference(file1, file2)).toEqual(JSON.parse(EXPECTED));
+const getDataForTest = (extension, format) => ({
+  data1: getFixturePath(extension, `data01.${extension}`),
+  data2: getFixturePath(extension, `data02.${extension}`),
+  expected: readFixture('expected', `${format}.txt`),
+  format,
+  extension,
 });
 
-test('trees difference (YAML)', () => {
-  const [file1, file2] = [
-    getFixturePath('yaml', 'hexlet-data-1.yml'),
-    getFixturePath('yaml', 'hexlet-data-2.yml'),
-  ];
-
-  expect(generateDifference(file1, file2)).toEqual(YAML.load(EXPECTED));
+test.each([
+  getDataForTest('json', 'stylish'),
+  getDataForTest('json', 'plain'),
+  getDataForTest('json', 'json'),
+  getDataForTest('yaml', 'stylish'),
+  getDataForTest('yaml', 'plain'),
+  getDataForTest('yaml', 'json'),
+])('gendiff ($extension: $format)', ({
+  data1, data2, expected, format,
+}) => {
+  expect(gendiff(data1, data2, format)).toEqual(expected);
 });

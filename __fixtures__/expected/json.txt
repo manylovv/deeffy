@@ -1,7 +1,7 @@
 [
   {
     "key": "common",
-    "type": "tree",
+    "type": "nested",
     "children": [
       {
         "key": "follow",
@@ -20,7 +20,7 @@
       },
       {
         "key": "setting3",
-        "type": "changed",
+        "type": "modified",
         "oldValue": true,
         "newValue": null
       },
@@ -38,15 +38,15 @@
       },
       {
         "key": "setting6",
-        "type": "tree",
+        "type": "nested",
         "children": [
           {
             "key": "doge",
-            "type": "tree",
+            "type": "nested",
             "children": [
               {
                 "key": "wow",
-                "type": "changed",
+                "type": "modified",
                 "oldValue": "",
                 "newValue": "so much"
               }
@@ -68,11 +68,11 @@
   },
   {
     "key": "group1",
-    "type": "tree",
+    "type": "nested",
     "children": [
       {
         "key": "baz",
-        "type": "changed",
+        "type": "modified",
         "oldValue": "bas",
         "newValue": "bars"
       },
@@ -83,7 +83,7 @@
       },
       {
         "key": "nest",
-        "type": "changed",
+        "type": "modified",
         "oldValue": {
           "key": "value"
         },
