@@ -16,18 +16,18 @@ const getIndent = (type, level) => {
   throw new Error(`Invalid type: ${type}`);
 };
 
+const wrapInBrackets = (value, indent) => `{\n${value}\n${indent}}`;
+
 const stringify = (value, level) => {
   if (!_.isPlainObject(value)) {
     return value;
   }
 
-  const keys = _.keys(value);
-  const generatedTree = keys.map((key) => `${getIndent('nested', level)}${key}: ${stringify(value[key], level + 1)}`);
-  return '{\n'
-    + generatedTree.join('\n')
-    + '\n'
-    + getIndent('nested', level - 1)
-    + '}';
+  const generatedTree = _.keys(value)
+    .map((key) => `${getIndent('nested', level)}${key}: ${stringify(value[key], level + 1)}`)
+    .join('\n');
+
+  return wrapInBrackets(generatedTree, getIndent('nested', level - 1));
 };
 
 const formatTree = (diff, level = 1) => diff
@@ -62,7 +62,7 @@ const formatTree = (diff, level = 1) => diff
 
       case 'nested': {
         const tree = formatTree(children, level + 1);
-        return `${indent}${key}: {\n${tree}\n${indent}}`;
+        return `${indent}${key}: ${wrapInBrackets(tree, indent)}`;
       }
 
       default: {
