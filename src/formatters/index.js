@@ -1,7 +1,7 @@
 import formatTree from './stylish.js';
 import formatTreeToPlain from './plain.js';
 
-export default (data, option) => {
+export default (data, option = 'stylish') => {
   switch (option) {
     case 'stylish':
       return formatTree(data);
