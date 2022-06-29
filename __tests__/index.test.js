@@ -2,23 +2,16 @@ import { test, expect } from '@jest/globals';
 import { getFixturePath, readFixture } from '../src/utils.js';
 import gendiff from '../src/index.js';
 
-const getDataForTest = (extension, format) => ({
-  data1: getFixturePath(extension, `data01.${extension}`),
-  data2: getFixturePath(extension, `data02.${extension}`),
-  expected: readFixture('expected', `${format}.txt`),
-  format,
-  extension,
-});
-
 test.each([
-  getDataForTest('json', 'stylish'),
-  getDataForTest('json', 'plain'),
-  getDataForTest('json', 'json'),
-  getDataForTest('yaml', 'stylish'),
-  getDataForTest('yaml', 'plain'),
-  getDataForTest('yaml', 'json'),
-])('gendiff ($extension: $format)', ({
-  data1, data2, expected, format,
-}) => {
+  ['json', 'stylish'],
+  ['json', 'plain'],
+  ['json', 'json'],
+  ['yaml', 'stylish'],
+  ['yml', 'stylish'],
+])('gendiff (%s - %s)', (extension, format) => {
+  const data1 = getFixturePath(`data01.${extension}`);
+  const data2 = getFixturePath(`data02.${extension}`);
+  const expected = readFixture(`expected-${format}.txt`);
+
   expect(gendiff(data1, data2, format)).toEqual(expected);
 });

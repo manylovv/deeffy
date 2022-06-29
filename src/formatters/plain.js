@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const getCurrentPath = (path, currentName) => [...path, currentName].join('.');
+const getPropertyName = (path, currentName) => [...path, currentName].join('.');
 
 const stringify = (value) => {
   if (_.isPlainObject(value)) {
@@ -12,21 +12,25 @@ const stringify = (value) => {
   return value;
 };
 
-const formatTreeToPlain = (tree) => {
+const formatPlain = (tree) => {
   const iter = (iterableTree, path = []) => iterableTree
     .map((current) => {
-      const currentPath = getCurrentPath(path, current.key);
+      const currentPath = getPropertyName(path, current.key);
       switch (current.type) {
         case 'nested': {
           return iter(current.children, [...path, current.key]);
         }
 
-        case 'modified': {
-          return `Property '${currentPath}' was updated. From ${stringify(current.oldValue)} to ${stringify(current.newValue)}`;
+        case 'changed': {
+          return `Property '${currentPath}' was updated. From ${stringify(
+            current.oldValue,
+          )} to ${stringify(current.newValue)}`;
         }
 
         case 'added': {
-          return `Property '${currentPath}' was added with value: ${stringify(current.newValue)}`;
+          return `Property '${currentPath}' was added with value: ${stringify(
+            current.newValue,
+          )}`;
         }
 
         case 'deleted': {
@@ -47,4 +51,4 @@ const formatTreeToPlain = (tree) => {
   return iter(tree);
 };
 
-export default formatTreeToPlain;
+export default formatPlain;

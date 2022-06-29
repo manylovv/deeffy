@@ -1,13 +1,21 @@
 import YAML from 'js-yaml';
 
 export default (data, type) => {
-  if (type === 'json') {
-    return JSON.parse(data, 'utf-8');
-  }
+  switch (type) {
+    case 'json': {
+      return JSON.parse(data, 'utf-8');
+    }
 
-  if (type === 'yml' || type === 'yaml') {
-    return YAML.load(data);
-  }
+    case 'yaml': {
+      return YAML.load(data);
+    }
 
-  throw new Error(`Unknown type ${type}`);
+    case 'yml': {
+      return YAML.load(data);
+    }
+
+    default: {
+      throw new Error(`Unknown type: ${type}`);
+    }
+  }
 };

@@ -39,7 +39,7 @@ const generateDifference = (data1, data2) => {
       if (obj1[key] !== obj2[key]) {
         return {
           key,
-          type: 'modified',
+          type: 'changed',
           oldValue: obj1[key],
           newValue: obj2[key],
         };
