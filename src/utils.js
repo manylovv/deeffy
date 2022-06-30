@@ -8,9 +8,9 @@ const __dirname = dirname(__filename);
 
 export const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 export const readFixture = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
-export const getDataFromFile = (filepath) => {
+export const readFile = (filepath) => {
   const fullPath = path.resolve(filepath);
   const data = fs.readFileSync(fullPath).toString();
   return data;
 };
-export const getTypeOfFile = (filepath) => path.extname(filepath).slice(1);
+export const getFileExtension = (filepath) => path.extname(filepath).slice(1);

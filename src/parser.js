@@ -15,7 +15,7 @@ export default (data, type) => {
     }
 
     default: {
-      throw new Error(`Unknown type: ${type}`);
+      throw new Error(`Cannot parse type: ${type}`);
     }
   }
 };
