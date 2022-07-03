@@ -7,7 +7,11 @@ test.each([
   ['json', 'plain'],
   ['json', 'json'],
   ['yaml', 'stylish'],
+  ['yaml', 'plain'],
+  ['yaml', 'json'],
   ['yml', 'stylish'],
+  ['yml', 'plain'],
+  ['yml', 'json'],
 ])('gendiff (%s - %s)', (extension, format) => {
   const data1 = getFixturePath(`data01.${extension}`);
   const data2 = getFixturePath(`data02.${extension}`);

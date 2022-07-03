@@ -49,9 +49,9 @@ const formatStylish = (diff, depth = 0) => diff
 
       case 'nested': {
         const tree = formatStylish(current.children, depth + 1);
-        const indentTree = getIndent(depth, 'tree');
-        const indentBrackets = getIndent(depth, 'bracket');
-        return `${indentTree}${current.key}: {\n${tree}\n${indentBrackets}}`;
+        const treeIndent = getIndent(depth, 'tree');
+        const bracketIndent = getIndent(depth, 'bracket');
+        return `${treeIndent}${current.key}: {\n${tree}\n${bracketIndent}}`;
       }
 
       default: {
