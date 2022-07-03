@@ -15,26 +15,26 @@ const stringify = (value) => {
 const formatPlain = (tree) => {
   const iter = (iterableTree, path = []) => iterableTree
     .map((current) => {
-      const currentPath = getPropertyName(path, current.key);
+      const propertyName = getPropertyName(path, current.key);
       switch (current.type) {
         case 'nested': {
           return iter(current.children, [...path, current.key]);
         }
 
         case 'changed': {
-          return `Property '${currentPath}' was updated. From ${stringify(
+          return `Property '${propertyName}' was updated. From ${stringify(
             current.oldValue,
           )} to ${stringify(current.newValue)}`;
         }
 
         case 'added': {
-          return `Property '${currentPath}' was added with value: ${stringify(
+          return `Property '${propertyName}' was added with value: ${stringify(
             current.newValue,
           )}`;
         }
 
         case 'deleted': {
-          return `Property '${currentPath}' was removed`;
+          return `Property '${propertyName}' was removed`;
         }
 
         case 'unchanged': {

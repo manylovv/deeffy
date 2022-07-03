@@ -1,67 +1,61 @@
 import _ from 'lodash';
 
-const getSpaces = (quantity) => ' '.repeat(quantity);
+const getIndent = (depth, typeOfIndent) => {
+  const indentTypes = {
+    key: 2,
+    tree: 4,
+    bracket: 4,
+  };
 
-const wrapInBrackets = (value, indent) => `{\n${value}\n${indent}}`;
-
-const stringify = (value, level) => {
-  if (!_.isPlainObject(value)) {
-    return value;
-  }
-
-  const generatedTree = _.keys(value)
-    .map((key) => `${getSpaces(4 + 4 * (level))}${key}: ${stringify(
-      value[key],
-      level + 1,
-    )}`)
-    .join('\n');
-
-  return wrapInBrackets(generatedTree, getSpaces(4 + 4 * (level - 1)));
+  return ' '.repeat(indentTypes[typeOfIndent] + 4 * (depth));
 };
 
-const formatStylish = (diff, level = 1) => diff
+const stringify = (key, value, prefix, depth) => {
+  if (!_.isPlainObject(value)) {
+    return `${getIndent(depth, 'key')}${prefix} ${key}: ${value}`;
+  }
+
+  const nestedKeys = Object.keys(value);
+  const stringifiedTree = nestedKeys
+    .map((nestedKey) => stringify(nestedKey, value[nestedKey], ' ', depth + 1))
+    .join('\n');
+
+  const keyIndent = getIndent(depth, 'key');
+  const bracketIndent = getIndent(depth, 'bracket');
+  return `${keyIndent}${prefix} ${key}: {\n${stringifiedTree}\n${bracketIndent}}`;
+};
+
+const formatStylish = (diff, depth = 0) => diff
   .map((current) => {
-    const {
-      key, type, oldValue, newValue, children = [],
-    } = current;
-
-    const stringifiedOldValue = stringify(oldValue, level);
-    const stringifiedNewValue = stringify(newValue, level);
-
-    switch (type) {
+    switch (current.type) {
       case 'added': {
-        // не знаю как можно избавиться от констант в каждом кейсе,
-        // чтобы при этом осталось читаемость, и не было бы дополнительной проверки по типам
-        const indent = getSpaces(2 + 4 * (level - 1));
-        return `${indent}+ ${key}: ${stringifiedNewValue}`;
+        return stringify(current.key, current.newValue, '+', depth);
       }
 
       case 'deleted': {
-        const indent = getSpaces(2 + 4 * (level - 1));
-        return `${indent}- ${key}: ${stringifiedOldValue}`;
+        return stringify(current.key, current.oldValue, '-', depth);
       }
 
       case 'unchanged': {
-        const indent = getSpaces(4 + 4 * (level - 1));
-        return `${indent}${key}: ${stringifiedOldValue}`;
+        return stringify(current.key, current.oldValue, ' ', depth);
       }
 
       case 'changed': {
-        const indent = getSpaces(2 + 4 * (level - 1));
         return (
-          `${indent}- ${key}: ${stringifiedOldValue}\n`
-            + `${indent}+ ${key}: ${stringifiedNewValue}`
+          `${stringify(current.key, current.oldValue, '-', depth)}\n`
+          + `${stringify(current.key, current.newValue, '+', depth)}`
         );
       }
 
       case 'nested': {
-        const indent = getSpaces(4 + 4 * (level - 1));
-        const tree = formatStylish(children, level + 1);
-        return `${indent}${key}: ${wrapInBrackets(tree, indent)}`;
+        const tree = formatStylish(current.children, depth + 1);
+        const indentTree = getIndent(depth, 'tree');
+        const indentBrackets = getIndent(depth, 'bracket');
+        return `${indentTree}${current.key}: {\n${tree}\n${indentBrackets}}`;
       }
 
       default: {
-        throw new Error(`Invalid type ${type}`);
+        throw new Error(`Invalid type ${current.type}`);
       }
     }
   })
