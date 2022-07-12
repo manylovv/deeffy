@@ -5,7 +5,6 @@ const getUnionKeys = (obj1, obj2) => _.union(_.keys(obj1), _.keys(obj2));
 const generateDifference = (data1, data2) => {
   const iter = (obj1, obj2) => {
     const unionKeys = getUnionKeys(obj1, obj2);
-
     const result = unionKeys.map((key) => {
       if (_.isPlainObject(obj1[key]) && _.isPlainObject(obj2[key])) {
         return {

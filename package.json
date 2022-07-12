@@ -19,7 +19,7 @@
   },
   "jest": {
     "testPathIgnorePatterns": [
-      "./__tests__/tests-utils.js"
+      "./__tests__/testUtils.js"
     ]
   },
   "repository": {

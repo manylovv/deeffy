@@ -1,5 +1,5 @@
 import { test, expect } from '@jest/globals';
-import { getFixturePath, readFixture } from '../src/utils.js';
+import { getFixturePath, readFixture } from './testUtils.js';
 import gendiff from '../src/index.js';
 
 test.each([

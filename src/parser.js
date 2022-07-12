@@ -6,11 +6,8 @@ export default (data, type) => {
       return JSON.parse(data, 'utf-8');
     }
 
+    case 'yml':
     case 'yaml': {
-      return YAML.load(data);
-    }
-
-    case 'yml': {
       return YAML.load(data);
     }
 

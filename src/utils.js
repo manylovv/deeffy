@@ -1,17 +1,12 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 import parce from './parser.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-export const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
-export const readFixture = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
-export const getParcedData = (filepath) => {
+const getParsedData = (filepath) => {
   const fullPath = path.resolve(filepath);
   const data = fs.readFileSync(fullPath).toString();
   const extension = path.extname(filepath).slice(1);
   return parce(data, extension);
 };
+
+export default getParsedData;
