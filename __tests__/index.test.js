@@ -1,6 +1,6 @@
 import { test, expect } from '@jest/globals';
 import { getFixturePath, readFixture } from './testUtils.js';
-import gendiff from '../src/index.js';
+import deeffy from '../src/index.js';
 
 test.each([
   ['json', 'stylish'],
@@ -12,10 +12,10 @@ test.each([
   ['yml', 'stylish'],
   ['yml', 'plain'],
   ['yml', 'json'],
-])('gendiff (%s - %s)', (extension, format) => {
+])('deeffy (%s - %s)', (extension, format) => {
   const data1 = getFixturePath(`data01.${extension}`);
   const data2 = getFixturePath(`data02.${extension}`);
   const expected = readFixture(`expected-${format}.txt`);
 
-  expect(gendiff(data1, data2, format)).toEqual(expected);
+  expect(deeffy(data1, data2, format)).toEqual(expected);
 });
