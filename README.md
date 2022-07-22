@@ -23,7 +23,6 @@
 
 I am a cli tool for comparing two **json/yaml** files and show the difference between them.
 
-
 ## How to install me?
 
 ```bash
@@ -31,30 +30,79 @@ npm i -g deeffy
 ```
 ## How to use me?
 
-**Stylish format (default):**
+#### Stylish format (default):
 
 ```
-deeffy <filepath1> <second_filepath2>
+deeffy <filepath1> <filepath2>
 # or
 deeffy -f stylish <filepath1> <filepath2>
 ```
+Example:
+```bash
+deffy_user $ deeffy file1.json file2.json
+# output
+{
+  - follow: false
+    host: hexlet.io
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 20
+  + verbose: true
+}
+```
 
-[![asciicast](https://asciinema.org/a/OxQQ9Aj2Ku4AQVRvI8YhAcdVY.svg)](https://asciinema.org/a/OxQQ9Aj2Ku4AQVRvI8YhAcdVY?t=2?speed=2)
-
-**Plain format:**
+#### Plain format:
 
 ```
 deeffy -f plain <filepath1> <filepath2>
 ```
+Example:
+```bash
+deffy_user $ deeffy -f plain file1.json file2.json
+# output
+Property 'follow' was removed
+Property 'proxy' was removed
+Property 'timeout' was updated. From 50 to 20
+Property 'verbose' was added with value: true
+```
 
-[![asciicast](https://asciinema.org/a/IJaeTWOnP7wEvu9IrrILZhtbC.svg)](https://asciinema.org/a/IJaeTWOnP7wEvu9IrrILZhtbC?t=3)
-
-**Json format (for developers):**
+#### Json format (for developers):
 
 ```
 deeffy -f json <filepath1> <filepath2>
 ```
-
-[![asciicast](https://asciinema.org/a/s7qmkGzFJHjrwGNR0qR9Ywi1W.svg)](https://asciinema.org/a/s7qmkGzFJHjrwGNR0qR9Ywi1W?t=3)
+Example: 
+```bash
+deffy_user $ deeffy -f json file1.json file2.json
+# output
+[
+  {
+    "key": "follow",
+    "type": "deleted",
+    "oldValue": false
+  },
+  {
+    "key": "host",
+    "type": "unchanged",
+    "oldValue": "hexlet.io"
+  },
+  {
+    "key": "proxy",
+    "type": "deleted",
+    "oldValue": "123.234.53.22"
+  },
+  {
+    "key": "timeout",
+    "type": "changed",
+    "oldValue": 50,
+    "newValue": 20
+  },
+  {
+    "key": "verbose",
+    "type": "added",
+    "newValue": true
+  }
+]
+```
 
 **Have a great experience with me :earth_americas:**
