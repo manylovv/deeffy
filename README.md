@@ -39,7 +39,7 @@ deeffy <filepath1> <second_filepath2>
 deeffy -f stylish <filepath1> <filepath2>
 ```
 
-[![asciicast](https://asciinema.org/a/OxQQ9Aj2Ku4AQVRvI8YhAcdVY.svg)](https://asciinema.org/a/OxQQ9Aj2Ku4AQVRvI8YhAcdVY?t=2)
+[![asciicast](https://asciinema.org/a/OxQQ9Aj2Ku4AQVRvI8YhAcdVY.svg)](https://asciinema.org/a/OxQQ9Aj2Ku4AQVRvI8YhAcdVY?t=2?speed=2)
 
 **Plain format:**
 
