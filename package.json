@@ -4,7 +4,7 @@
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21"
   },
-  "name": "@hexlet/code",
+  "name": "deeffy",
   "description": "Difference finder is a program that finds the difference between two data structures.",
   "version": "0.9.0",
   "main": "src/index.js",
