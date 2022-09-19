@@ -39,7 +39,7 @@ deeffy -f stylish <filepath1> <filepath2>
 ```
 Example:
 ```bash
-deffy_user $ deeffy file1.json file2.json
+user $ deeffy file1.json file2.json
 # output
 {
   - follow: false
@@ -58,7 +58,7 @@ deeffy -f plain <filepath1> <filepath2>
 ```
 Example:
 ```bash
-deffy_user $ deeffy -f plain file1.json file2.json
+user $ deeffy -f plain file1.json file2.json
 # output
 Property 'follow' was removed
 Property 'proxy' was removed
@@ -73,7 +73,7 @@ deeffy -f json <filepath1> <filepath2>
 ```
 Example: 
 ```bash
-deffy_user $ deeffy -f json file1.json file2.json
+user $ deeffy -f json file1.json file2.json
 # output
 [
   {
